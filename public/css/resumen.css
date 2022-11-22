@@ -1,0 +1,11 @@
+.tableBarriles{
+    margin-top: 5vh;
+}
+
+.tableBarriles input{
+    width:50%;
+}
+
+.tableBarriles td{
+    text-align: center;
+}
