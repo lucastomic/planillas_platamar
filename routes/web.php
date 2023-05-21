@@ -48,7 +48,7 @@ Route::middleware(['isLogged'])->group(function () {
 
     Route::get('envase/{lote?}/{fecha?}/{productoD?}', function($lote = "", $fecha = "", $productoD = ""){
         $registros = DB::table('produccions')->orderBy('id','desc')->where("seccion", "=", "envase")->get();
-        $productos = ["90", "90F", "90R", "750", "1000", "30X3", "60X3", "30X3s", "60X3s", "30x3ENV", "60x3ENV", "100HGT", "200", "200F", "200R", "Sobres", "50X3", "50X3s", "50x3ENV"];
+        $productos = ["90", "90F", "90R", "750", "1000", "30X3", "60X3", "30X3s", "60X3s", "30x3ENV", "60x3ENV", "100HGT", "200", "200F", "200R", "Sobres", "50X3", "50X3s", "50x3ENV","Pand", "Pand D", "Pand DP", "Pand P", "Trozos"];
         $registrosPersonal = DB::table('personals')->get();
         return view('produccion.envase', ['registros'=>$registros, 'fecha'=>$fecha, 'lote'=>$lote, 'productos'=>$productos, 'producto_default'=>$productoD, 'produccionController'=>produccionController::class, 'registrosPersonal'=>$registrosPersonal]);
     });

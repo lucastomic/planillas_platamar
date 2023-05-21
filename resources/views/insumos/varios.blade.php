@@ -52,6 +52,7 @@
         <option value="Aceite">Aceite</option>
         <option value="Folex">Folex</option>
         <option value="Sal">Sal</option>
+        <option value="Sal">Pand</option>
     </select>
 
     <label for="cantidad">Cantidad</label>
