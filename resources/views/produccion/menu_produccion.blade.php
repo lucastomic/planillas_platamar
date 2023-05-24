@@ -19,6 +19,7 @@
             <li><a href="{{url('/corte')}}">Corte</a></li>
             <li><a href="{{url('/envase')}}">Envase</a></li>
             <li><a href="{{url('/filet')}}">Filet</a></li>
+            <li><a href="{{url('/paños')}}">Paños</a></li>
             <li><a href="{{url('/secado')}}">Secado</a></li>
             <li><a href="{{url('/descabezado')}}">Descabezado</a></li>
             <li><a href="{{url('/horario')}}">Horario</a></li>
