@@ -42,6 +42,7 @@
         <option value="Estrella 660 ">Estrella 660</option>
         <option value="PET">PET</option>
         <option value="General">General</option>
+        <option value="Sal">Bolsa</option>
     </select>
 
     <label for="producto">Producto</label>
@@ -52,7 +53,6 @@
         <option value="Aceite">Aceite</option>
         <option value="Folex">Folex</option>
         <option value="Sal">Sal</option>
-        <option value="Sal">Pand</option>
     </select>
 
     <label for="cantidad">Cantidad</label>

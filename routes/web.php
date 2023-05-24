@@ -59,6 +59,13 @@ Route::middleware(['isLogged'])->group(function () {
 
         return view('produccion.filet', ['registros'=>$registros, 'fecha'=>$fecha, 'lote'=>$lote, 'registrosPersonal'=>$registrosPersonal]);
     });
+    Route::get('paños/{lote?}/{fecha?}', function($lote = "", $fecha = ""){
+        $registros = DB::table('produccions')->orderBy('id','desc')->where("seccion", "=", "paños")->get();
+        $registrosPersonal = DB::table('personals')->get();
+
+        return view('produccion.panos', ['registros'=>$registros, 'fecha'=>$fecha, 'lote'=>$lote, 'registrosPersonal'=>$registrosPersonal]);
+    });
+
 
     Route::get('descabezado/{lote?}/{fecha?}/{producto?}', function($lote = "", $fecha = "", $producto = ""){
         $registros = DB::table('produccions')->orderBy('id','desc')->where("seccion", "=", "descabezado")->get();
