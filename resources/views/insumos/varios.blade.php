@@ -43,6 +43,7 @@
         <option value="PET">PET</option>
         <option value="General">General</option>
         <option value="Sal">Bolsa</option>
+        <option value="PET">PET 700</option>
     </select>
 
     <label for="producto">Producto</label>
