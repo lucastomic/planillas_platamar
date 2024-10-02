@@ -40,49 +40,49 @@ Route::middleware(['isLogged'])->group(function () {
     Route::view('/menu_produccion', 'produccion.menu_produccion');
 
     // Planillas produccion
-    Route::get('corte/{lote?}/{fecha?}', function($lote = "", $fecha = ""){
-        $registros = DB::table('produccions')->orderBy('id','desc')->where("seccion", "=", "corte")->get();
+    Route::get('corte/{lote?}/{fecha?}', function ($lote = "", $fecha = "") {
+        $registros = DB::table('produccions')->orderBy('id', 'desc')->where("seccion", "=", "corte")->get();
         $registrosPersonal = DB::table('personals')->get();
-        return view('produccion.corte', ['registros'=>$registros, 'fecha'=>$fecha, 'lote'=>$lote, 'registrosPersonal'=>$registrosPersonal]);
+        return view('produccion.corte', ['registros' => $registros, 'fecha' => $fecha, 'lote' => $lote, 'registrosPersonal' => $registrosPersonal]);
     });
 
-    Route::get('envase/{lote?}/{fecha?}/{productoD?}', function($lote = "", $fecha = "", $productoD = ""){
-        $registros = DB::table('produccions')->orderBy('id','desc')->where("seccion", "=", "envase")->get();
-        $productos = ["90", "90F", "90R", "750",  "200", "200F", "200R", "Sobres", "Pand", "Pand D", "Pand DP", "Pand P", "Trozos","Vacio1k","40x3", "40x3s", "40x3Env", "750HGT", "750TZ","BN200","BN1000"];
+    Route::get('envase/{lote?}/{fecha?}/{productoD?}', function ($lote = "", $fecha = "", $productoD = "") {
+        $registros = DB::table('produccions')->orderBy('id', 'desc')->where("seccion", "=", "envase")->get();
+        $productos = ["90", "90F", "90R", "200", "200F", "200R", "Sobres", "Pand", "Pand D", "Pand DP", "Pand P", "Trozos", "Vacio1k", "40x3", "40x3s", "40x3Env", "750P", "750HGT", "750TZ", "BN200", "BN1000"];
         $registrosPersonal = DB::table('personals')->get();
-        return view('produccion.envase', ['registros'=>$registros, 'fecha'=>$fecha, 'lote'=>$lote, 'productos'=>$productos, 'producto_default'=>$productoD, 'produccionController'=>produccionController::class, 'registrosPersonal'=>$registrosPersonal]);
+        return view('produccion.envase', ['registros' => $registros, 'fecha' => $fecha, 'lote' => $lote, 'productos' => $productos, 'producto_default' => $productoD, 'produccionController' => produccionController::class, 'registrosPersonal' => $registrosPersonal]);
     });
 
-    Route::get('filet/{lote?}/{fecha?}', function($lote = "", $fecha = ""){
-        $registros = DB::table('produccions')->orderBy('id','desc')->where("seccion", "=", "filet")->get();
+    Route::get('filet/{lote?}/{fecha?}', function ($lote = "", $fecha = "") {
+        $registros = DB::table('produccions')->orderBy('id', 'desc')->where("seccion", "=", "filet")->get();
         $registrosPersonal = DB::table('personals')->get();
 
-        return view('produccion.filet', ['registros'=>$registros, 'fecha'=>$fecha, 'lote'=>$lote, 'registrosPersonal'=>$registrosPersonal]);
+        return view('produccion.filet', ['registros' => $registros, 'fecha' => $fecha, 'lote' => $lote, 'registrosPersonal' => $registrosPersonal]);
     });
-    Route::get('paños/{lote?}/{fecha?}', function($lote = "", $fecha = ""){
-        $registros = DB::table('produccions')->orderBy('id','desc')->where("seccion", "=", "paños")->get();
+    Route::get('paños/{lote?}/{fecha?}', function ($lote = "", $fecha = "") {
+        $registros = DB::table('produccions')->orderBy('id', 'desc')->where("seccion", "=", "paños")->get();
         $registrosPersonal = DB::table('personals')->get();
 
-        return view('produccion.panos', ['registros'=>$registros, 'fecha'=>$fecha, 'lote'=>$lote, 'registrosPersonal'=>$registrosPersonal]);
+        return view('produccion.panos', ['registros' => $registros, 'fecha' => $fecha, 'lote' => $lote, 'registrosPersonal' => $registrosPersonal]);
     });
 
 
-    Route::get('descabezado/{lote?}/{fecha?}/{producto?}', function($lote = "", $fecha = "", $producto = ""){
-        $registros = DB::table('produccions')->orderBy('id','desc')->where("seccion", "=", "descabezado")->get();
+    Route::get('descabezado/{lote?}/{fecha?}/{producto?}', function ($lote = "", $fecha = "", $producto = "") {
+        $registros = DB::table('produccions')->orderBy('id', 'desc')->where("seccion", "=", "descabezado")->get();
         $registrosPersonal = DB::table('personals')->get();
         $productos = ["DP", "D", "C", "Pasta", "Cajon"];
-        return view('produccion.descabezado', ['registros'=>$registros, 'fecha'=>$fecha, 'lote'=>$lote, 'productoD'=>$producto, 'produccionController'=>produccionController::class, "productos"=>$productos, 'registrosPersonal'=>$registrosPersonal]);
+        return view('produccion.descabezado', ['registros' => $registros, 'fecha' => $fecha, 'lote' => $lote, 'productoD' => $producto, 'produccionController' => produccionController::class, "productos" => $productos, 'registrosPersonal' => $registrosPersonal]);
     });
 
-    Route::get('secado/{lote?}/{fecha?}', function($lote = "", $fecha = ""){
-        $registros = DB::table('produccions')->orderBy('id','desc')->where("seccion", "=", "secado")->get();
+    Route::get('secado/{lote?}/{fecha?}', function ($lote = "", $fecha = "") {
+        $registros = DB::table('produccions')->orderBy('id', 'desc')->where("seccion", "=", "secado")->get();
 
-        return view('produccion.secado', ['registros'=>$registros, 'fecha'=>$fecha, 'lote'=>$lote]);
+        return view('produccion.secado', ['registros' => $registros, 'fecha' => $fecha, 'lote' => $lote]);
     });
 
     // Confirmacion de borrado de registro
-    Route::get("/confirmar_borrar/{id}/{table}", function($id, $table){
-        switch($table){
+    Route::get("/confirmar_borrar/{id}/{table}", function ($id, $table) {
+        switch ($table) {
             case "produccion":
                 $registro = DB::table('produccions')->where('id', $id)->first();
                 break;
@@ -99,7 +99,7 @@ Route::middleware(['isLogged'])->group(function () {
                 $registro = DB::table('personals')->where('id', $id)->first();
                 break;
         }
-        return view('confirmar_borrar', ['registro'=>$registro]);
+        return view('confirmar_borrar', ['registro' => $registro]);
     });
 
     // Eliminacion de registro
@@ -110,11 +110,11 @@ Route::middleware(['isLogged'])->group(function () {
     Route::delete('borrar_personal/{id}', [personalController::class, 'destroy']);
 
     // Insertar nombre en planilla secado
-    Route::get("/insertar_nombre/{id}", function($id){
+    Route::get("/insertar_nombre/{id}", function ($id) {
         $registro = DB::table('produccions')->where('id', $id)->first();
         $registrosPersonal = DB::table('personals')->get();
 
-        return view('insertar_nombre', ['registro'=>$registro, 'registrosPersonal'=>$registrosPersonal]);
+        return view('insertar_nombre', ['registro' => $registro, 'registrosPersonal' => $registrosPersonal]);
     });
 
     // Proceso del formualrio de insertar_nombre
@@ -124,45 +124,45 @@ Route::middleware(['isLogged'])->group(function () {
 
     Route::view('menu_insumos', 'insumos.menu_insumos');
 
-    Route::get('pescado/{lote?}/{fecha?}', function($lote = "", $fecha = ""){
-        $registros = DB::table('insumos')->orderBy('id','desc')->where("seccion", "=", "pescado")->get();
+    Route::get('pescado/{lote?}/{fecha?}', function ($lote = "", $fecha = "") {
+        $registros = DB::table('insumos')->orderBy('id', 'desc')->where("seccion", "=", "pescado")->get();
 
-        return view('insumos.pescado', ['registros'=>$registros, 'fecha'=>$fecha, 'lote'=>$lote]);
+        return view('insumos.pescado', ['registros' => $registros, 'fecha' => $fecha, 'lote' => $lote]);
     });
 
-    Route::get('varios/{fecha?}', function($fecha = ""){
-        $registros = DB::table('insumos')->orderBy('id','desc')->where("seccion", "=", "varios")->get();
+    Route::get('varios/{fecha?}', function ($fecha = "") {
+        $registros = DB::table('insumos')->orderBy('id', 'desc')->where("seccion", "=", "varios")->get();
 
-        return view('insumos.varios', ['registros'=>$registros, 'fecha'=>$fecha]);
+        return view('insumos.varios', ['registros' => $registros, 'fecha' => $fecha]);
     });
 
     // Planilla horarios
-    Route::get('horario/{fecha?}', function($fecha = ""){
-        $registros = DB::table('horarios')->orderBy('id','desc')->get();
+    Route::get('horario/{fecha?}', function ($fecha = "") {
+        $registros = DB::table('horarios')->orderBy('id', 'desc')->get();
         $registrosPersonal = DB::table('personals')->get();
-        return view('horario.horario', ['registros'=>$registros, 'fecha'=>$fecha, 'registrosPersonal'=>$registrosPersonal]);
+        return view('horario.horario', ['registros' => $registros, 'fecha' => $fecha, 'registrosPersonal' => $registrosPersonal]);
     });
 
-    Route::get("/insertar_salida/{id}", function($id){
+    Route::get("/insertar_salida/{id}", function ($id) {
         $registro = DB::table('horarios')->where('id', $id)->first();
-        return view('horario.insertar_salida', ['registro'=>$registro]);
+        return view('horario.insertar_salida', ['registro' => $registro]);
     });
 
     Route::get("insert_salida", [horarioController::class, 'insert_salida']);
 
-    
-    // Planilla resumen
-    Route::get('resumen/{fecha?}', function($fecha = ""){
-        $registros = DB::table('resumens')->orderBy('id','desc')->get();
 
-        return view('resumen.resumen', ['registros'=>$registros, 'fecha'=>$fecha]);
+    // Planilla resumen
+    Route::get('resumen/{fecha?}', function ($fecha = "") {
+        $registros = DB::table('resumens')->orderBy('id', 'desc')->get();
+
+        return view('resumen.resumen', ['registros' => $registros, 'fecha' => $fecha]);
     });
 
     // Planilla personal
-    Route::get('personal', function(){
+    Route::get('personal', function () {
         $registros = DB::table('personals')->get();
 
-        return view('personal.personal', ['registros'=>$registros]);
+        return view('personal.personal', ['registros' => $registros]);
     });
 });
 
